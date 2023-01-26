@@ -1,0 +1,310 @@
+{
+    "problem": "problem1",
+    "domain": "robots",
+    "objects": [
+        {
+            "objectType": "robot",
+            "objectIstances": [
+                "robot1",
+                "robot2"
+            ]
+        },
+        {
+            "objectType": "room",
+            "objectIstances": [
+                "roomA",
+                "roomB",
+                "roomC"
+            ]
+        },
+        {
+            "objectType": "obj",
+            "objectIstances": [
+                "ball1"
+            ]
+        }
+    ],
+    "init": [
+        {
+            "string": "(atRobotrobot1roomA)",
+            "isAssignment?": false,
+            "predName": "atRobot",
+            "predObjects": [
+                "robot1",
+                "roomA"
+            ]
+        },
+        {
+            "string": "(atRobotrobot2roomB)",
+            "isAssignment?": false,
+            "predName": "atRobot",
+            "predObjects": [
+                "robot2",
+                "roomB"
+            ]
+        },
+        {
+            "string": "(atObjectball1roomA)",
+            "isAssignment?": false,
+            "predName": "atObject",
+            "predObjects": [
+                "ball1",
+                "roomA"
+            ]
+        },
+        {
+            "string": "(allowedrobot1roomA)",
+            "isAssignment?": false,
+            "predName": "allowed",
+            "predObjects": [
+                "robot1",
+                "roomA"
+            ]
+        },
+        {
+            "string": "(allowedrobot1roomB)",
+            "isAssignment?": false,
+            "predName": "allowed",
+            "predObjects": [
+                "robot1",
+                "roomB"
+            ]
+        },
+        {
+            "string": "(allowedrobot2roomC)",
+            "isAssignment?": false,
+            "predName": "allowed",
+            "predObjects": [
+                "robot2",
+                "roomC"
+            ]
+        },
+        {
+            "string": "(allowedrobot2roomB)",
+            "isAssignment?": false,
+            "predName": "allowed",
+            "predObjects": [
+                "robot2",
+                "roomB"
+            ]
+        },
+        {
+            "string": "(linkroomAroomB)",
+            "isAssignment?": false,
+            "predName": "link",
+            "predObjects": [
+                "roomA",
+                "roomB"
+            ]
+        },
+        {
+            "string": "(linkroomBroomA)",
+            "isAssignment?": false,
+            "predName": "link",
+            "predObjects": [
+                "roomB",
+                "roomA"
+            ]
+        },
+        {
+            "string": "(linkroomCroomB)",
+            "isAssignment?": false,
+            "predName": "link",
+            "predObjects": [
+                "roomC",
+                "roomB"
+            ]
+        },
+        {
+            "string": "(linkroomBroomC)",
+            "isAssignment?": false,
+            "predName": "link",
+            "predObjects": [
+                "roomB",
+                "roomC"
+            ]
+        },
+        {
+            "string": "(=(distanceroomAroomB)12)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "distance",
+                    "operandObjects": [
+                        "roomA",
+                        "roomB"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "12"
+                }
+            ]
+        },
+        {
+            "string": "(=(distanceroomBroomA)12)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "distance",
+                    "operandObjects": [
+                        "roomB",
+                        "roomA"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "12"
+                }
+            ]
+        },
+        {
+            "string": "(=(distanceroomCroomB)12)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "distance",
+                    "operandObjects": [
+                        "roomC",
+                        "roomB"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "12"
+                }
+            ]
+        },
+        {
+            "string": "(=(distanceroomBroomC)12)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "distance",
+                    "operandObjects": [
+                        "roomB",
+                        "roomC"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "12"
+                }
+            ]
+        },
+        {
+            "string": "(=(speedrobot1)1.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "speed",
+                    "operandObjects": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "1.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(speedrobot2)1.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "speed",
+                    "operandObjects": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "1.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(batteryrobot1)100)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "battery",
+                    "operandObjects": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "100"
+                }
+            ]
+        },
+        {
+            "string": "(=(batteryrobot2)100)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "battery",
+                    "operandObjects": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "100"
+                }
+            ]
+        },
+        {
+            "string": "(=(dischargeRaterobot1)20.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "dischargeRate",
+                    "operandObjects": [
+                        "robot1"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20.0"
+                }
+            ]
+        },
+        {
+            "string": "(=(dischargeRaterobot2)20.0)",
+            "isAssignment?": true,
+            "operands": [
+                {
+                    "operandName": "dischargeRate",
+                    "operandObjects": [
+                        "robot2"
+                    ]
+                },
+                {
+                    "operandName": "Constant",
+                    "operandValue": "20.0"
+                }
+            ]
+        }
+    ],
+    "goal": [
+        {
+            "string": "(atObjectball1roomC)",
+            "predName": "atObject",
+            "predObjects": [
+                "ball1",
+                "roomC"
+            ]
+        },
+        {
+            "string": "(atRobotrobot1roomB)",
+            "predName": "atRobot",
+            "predObjects": [
+                "robot1",
+                "roomB"
+            ]
+        }
+    ]
+}
