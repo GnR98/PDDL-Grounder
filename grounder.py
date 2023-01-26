@@ -41,10 +41,3 @@ def run(domain="domain.pddl", problem="problem-1.pddl"):
        
 if __name__ == '__main__':
     run()
-
-
-
-
-
-
-
