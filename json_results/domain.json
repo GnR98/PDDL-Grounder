@@ -1,0 +1,1037 @@
+{
+    "domain": "robots",
+    "requirements": [
+        ":fluents",
+        ":durative-actions",
+        ":duration-inequalities",
+        ":adl",
+        ":typing",
+        ":time"
+    ],
+    "types": [
+        "robot",
+        "room",
+        "obj"
+    ],
+    "predicates": [
+        {
+            "predicateName": "atRobot",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "atObject",
+            "predicateParameters": [
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "allowed",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "holding",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                }
+            ]
+        },
+        {
+            "predicateName": "handsFull",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "ismoving",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "predicateName": "inMovement",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "ischarging",
+            "predicateParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "predicateName": "link",
+            "predicateParameters": [
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "functionName": "speed",
+            "functionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "functionName": "dischargeRate",
+            "functionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "functionName": "battery",
+            "functionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ]
+        },
+        {
+            "functionName": "distance",
+            "functionParameters": [
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        },
+        {
+            "functionName": "distanceRun",
+            "functionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "actionName": "startMoving",
+            "actionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "link ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "link",
+                    "preconditionParameters": [
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "not (inMovement ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "preconditionName": "inMovement",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": "atRobot ?r ?a",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "atRobot",
+                    "preconditionParameters": [
+                        "?r",
+                        "?a"
+                    ]
+                },
+                {
+                    "preconditionString": "allowed ?r ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "allowed",
+                    "preconditionParameters": [
+                        "?r",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "handsFull ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "handsFull",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "not (atRobot ?r ?a)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "atRobot",
+                    "effectParameters": [
+                        "?r",
+                        "?a"
+                    ]
+                },
+                {
+                    "effectString": "ismoving ?r ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "ismoving",
+                    "effectParameters": [
+                        "?r",
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "effectString": "inMovement ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "inMovement",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "effectString": "assign (distanceRun ?r ?a ?b)0",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "effectOperation": "assign",
+                    "effectOperands": [
+                        {
+                            "operandName": "distanceRun",
+                            "operandVariables": [
+                                "?r",
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "0",
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "startCharging",
+            "actionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "> (battery ?r)20",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "20",
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "inMovement ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "inMovement",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "not (inMovement ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "inMovement",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "effectString": "ischarging ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "ischarging",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "stopCharging",
+            "actionParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "ischarging ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "ischarging",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "not (ischarging ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "ischarging",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "effectString": "inMovement ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "inMovement",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "pick",
+            "actionParameters": [
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                },
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "> (battery ?r)20",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "20",
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "atRobot ?r ?l",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "atRobot",
+                    "preconditionParameters": [
+                        "?r",
+                        "?l"
+                    ]
+                },
+                {
+                    "preconditionString": "atObject ?o ?l",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "atObject",
+                    "preconditionParameters": [
+                        "?o",
+                        "?l"
+                    ]
+                },
+                {
+                    "preconditionString": "not (handsFull ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "preconditionName": "handsFull",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "holding ?r ?o",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "holding",
+                    "effectParameters": [
+                        "?r",
+                        "?o"
+                    ]
+                },
+                {
+                    "effectString": "not (atObject ?o ?l)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "atObject",
+                    "effectParameters": [
+                        "?o",
+                        "?l"
+                    ]
+                },
+                {
+                    "effectString": "handsFull ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "handsFull",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                }
+            ]
+        },
+        {
+            "actionName": "drop",
+            "actionParameters": [
+                {
+                    "parameterName": "?o",
+                    "parameterType": "obj"
+                },
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?l",
+                    "parameterType": "room"
+                }
+            ],
+            "actionPreconditions": [
+                {
+                    "preconditionString": "> (battery ?r)20",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "20",
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "atRobot ?r ?l",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "atRobot",
+                    "preconditionParameters": [
+                        "?r",
+                        "?l"
+                    ]
+                },
+                {
+                    "preconditionString": "holding ?r ?o",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "holding",
+                    "preconditionParameters": [
+                        "?r",
+                        "?o"
+                    ]
+                }
+            ],
+            "actionEffects": [
+                {
+                    "effectString": "not (holding ?r ?o)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "holding",
+                    "effectParameters": [
+                        "?r",
+                        "?o"
+                    ]
+                },
+                {
+                    "effectString": "atObject ?o ?l",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "atObject",
+                    "effectParameters": [
+                        "?o",
+                        "?l"
+                    ]
+                },
+                {
+                    "effectString": "not (handsFull ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "handsFull",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                }
+            ]
+        }
+    ],
+    "processes": [
+        {
+            "processName": "moving",
+            "processParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "link ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "link",
+                    "preconditionParameters": [
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "ismoving ?r ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "ismoving",
+                    "preconditionParameters": [
+                        "?r",
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "inMovement ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "inMovement",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": "< (distanceRun ?r ?a ?b) (distance ?a ?b)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": "<",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "distanceRun",
+                            "operandVariables": [
+                                "?r",
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "distance",
+                            "operandVariables": [
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": "> (battery ?r)20",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "20",
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "increase (distanceRun ?r ?a ?b) (*  (speed ?r)#t)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "effectOperation": "increase",
+                    "effectOperands": [
+                        {
+                            "operandName": "distanceRun",
+                            "operandVariables": [
+                                "?r",
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandString": "*  (speed ?r)#t",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "operandOperation": "*",
+                            "operandOperands": [
+                                {
+                                    "operandName": "speed",
+                                    "operandVariables": [
+                                        "?r"
+                                    ],
+                                    "isOperation?": false
+                                },
+                                {
+                                    "operandName": "Time",
+                                    "operandValue": "#t",
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "charging",
+            "processParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "ischarging ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "ischarging",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": "< (battery ?r)100",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": "<",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "100",
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "increase (battery ?r) (* #t1)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "effectOperation": "increase",
+                    "effectOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandString": "* #t1",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "operandOperation": "*",
+                            "operandOperands": [
+                                {
+                                    "operandName": "Time",
+                                    "operandValue": "#t",
+                                    "isOperation?": false
+                                },
+                                {
+                                    "operandName": "Constant",
+                                    "operandValue": "1",
+                                    "isOperation?": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "processName": "discharging",
+            "processParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                }
+            ],
+            "processPreconditions": [
+                {
+                    "preconditionString": "handsFull ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "handsFull",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": "not (ischarging ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "preconditionName": "ischarging",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": ">= (battery ?r)0",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">=",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "0",
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "processEffects": [
+                {
+                    "effectString": "decrease (battery ?r) (* #t (*  (speed ?r) (dischargeRate ?r)))",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "effectOperation": "decrease",
+                    "effectOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandString": "* #t (*  (speed ?r) (dischargeRate ?r))",
+                            "isNegated?": false,
+                            "isOperation?": true,
+                            "operandOperation": "*",
+                            "operandOperands": [
+                                {
+                                    "operandName": "Time",
+                                    "operandValue": "#t",
+                                    "isOperation?": false
+                                },
+                                {
+                                    "operandString": "*  (speed ?r) (dischargeRate ?r)",
+                                    "isNegated?": false,
+                                    "isOperation?": true,
+                                    "operandOperation": "*",
+                                    "operandOperands": [
+                                        {
+                                            "operandName": "speed",
+                                            "operandVariables": [
+                                                "?r"
+                                            ],
+                                            "isOperation?": false
+                                        },
+                                        {
+                                            "operandName": "dischargeRate",
+                                            "operandVariables": [
+                                                "?r"
+                                            ],
+                                            "isOperation?": false
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "eventName": "endMoving",
+            "eventParameters": [
+                {
+                    "parameterName": "?r",
+                    "parameterType": "robot"
+                },
+                {
+                    "parameterName": "?a",
+                    "parameterType": "room"
+                },
+                {
+                    "parameterName": "?b",
+                    "parameterType": "room"
+                }
+            ],
+            "eventPreconditions": [
+                {
+                    "preconditionString": "link ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "link",
+                    "preconditionParameters": [
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "ismoving ?r ?a ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "ismoving",
+                    "preconditionParameters": [
+                        "?r",
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "preconditionString": "inMovement ?r",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "preconditionName": "inMovement",
+                    "preconditionParameters": [
+                        "?r"
+                    ]
+                },
+                {
+                    "preconditionString": "> (battery ?r)20",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "battery",
+                            "operandVariables": [
+                                "?r"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "Constant",
+                            "operandValue": "20",
+                            "isOperation?": false
+                        }
+                    ]
+                },
+                {
+                    "preconditionString": ">= (distanceRun ?r ?a ?b) (distance ?a ?b)",
+                    "isNegated?": false,
+                    "isOperation?": true,
+                    "preconditionOperation": ">=",
+                    "preconditionOperands": [
+                        {
+                            "operandName": "distanceRun",
+                            "operandVariables": [
+                                "?r",
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        },
+                        {
+                            "operandName": "distance",
+                            "operandVariables": [
+                                "?a",
+                                "?b"
+                            ],
+                            "isOperation?": false
+                        }
+                    ]
+                }
+            ],
+            "eventEffects": [
+                {
+                    "effectString": "atRobot ?r ?b",
+                    "isNegated?": false,
+                    "isOperation?": false,
+                    "effectName": "atRobot",
+                    "effectParameters": [
+                        "?r",
+                        "?b"
+                    ]
+                },
+                {
+                    "effectString": "not (ismoving ?r ?a ?b)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "ismoving",
+                    "effectParameters": [
+                        "?r",
+                        "?a",
+                        "?b"
+                    ]
+                },
+                {
+                    "effectString": "not (inMovement ?r)",
+                    "isNegated?": true,
+                    "isOperation?": false,
+                    "effectName": "inMovement",
+                    "effectParameters": [
+                        "?r"
+                    ]
+                }
+            ]
+        }
+    ]
+}
